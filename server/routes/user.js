@@ -15,15 +15,15 @@ router.post('/register-user', function(req, res) {
   var serverResponse = new ServerResponse();
 
   //Saves new user on the database
-  newUser.save(function (err){
+  newUser.save((err) => {
     if (!err) {
       //Returns default sucessfull status
-      return serverResponse;
+      res.json(serverResponse);
     } else {
       //Sets error messages and status to notify the status of the requests
       serverResponse.setStatus('400');
       serverResponse.setDescription(err.toString());
-      return serverResponse;
+      res.json(serverResponse);
     }
   });
 });
@@ -35,18 +35,18 @@ router.put('/edit-user', function(req, res){
 
   //Method used to update an existing user
   const condition = { twitter_username: req.body.old_twitter_username};
-  User.findOne(condition, function(err, foundUser){
-    if (!err && foundUser != null) {
-      User.update(condition, { twitter_username: req.body.twitter_username, name: req.body.name}, function(err){
+  User.findOne(condition, (err, foundUser) => {
+    if (!err && foundUser.twitter_username != null) {
+      User.update(condition, { twitter_username: req.body.twitter_username, name: req.body.name}, (err) => {
         if (!err) {
           //Returns default sucessfull status
-          return serverResponse;
+          res.json(serverResponse);
         } else {
           //Creates a new error
           //Sets error messages and status to notify the status of the requests
           serverResponse.setStatus('400');
           serverResponse.setDescription(err.toString());
-          return serverResponse;
+          res.json(serverResponse);
         }
       });
     } else {
@@ -55,7 +55,7 @@ router.put('/edit-user', function(req, res){
       //Sets error messages and status to notify the status of the requests
       serverResponse.setStatus('400');
       serverResponse.setDescription(error);
-      return serverResponse;
+      res.json(serverResponse);
     }
   });
 });
@@ -65,16 +65,28 @@ router.delete('/delete-user', function(req, res){
   //Creates a server response object to notify the status of the request
   var serverResponse = new ServerResponse();
 
-  //Deletes user based on his twitter username
-  User.remove({ twitter_username: req.body.twitter_username }, function(err) {
-    if (!err) {
-      //Returns default sucessfull status
-      return serverResponse;
+  const condition = { twitter_username: req.body.twitter_username};
+  User.findOne(condition, (err, foundUser) => {
+    if (!err && foundUser != null) {
+      //Deletes user based on his twitter username
+      User.remove(condition, (err) => {
+        if (!err) {
+          //Returns default sucessfull status
+          res.json(serverResponse);
+        } else {
+          //Sets error messages and status to notify the status of the requests
+          serverResponse.setStatus('400');
+          serverResponse.setDescription(err.toString());
+          res.json(serverResponse);
+        }
+      });
     } else {
+      //Creates new error for the server response
+      const error = 'Could not find any user with this username.'
       //Sets error messages and status to notify the status of the requests
       serverResponse.setStatus('400');
-      serverResponse.setDescription(err.toString());
-      return serverResponse;
+      serverResponse.setDescription(error);
+      res.json(serverResponse);
     }
   });
 });
