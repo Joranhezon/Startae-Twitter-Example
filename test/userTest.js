@@ -94,7 +94,7 @@ describe('User Tests', function() {
   });
 
   it('should not edit an non-existing user', function(done) {
-    //Empty object
+    //Incorrect object
     var testUser = {
       name: 'Matheus',
       old_twitter_username: 'Xablau',
@@ -109,5 +109,19 @@ describe('User Tests', function() {
       expect(res.body['status']).to.equal('400');
       done();
     });
-  })
+  });
+
+  it('should not edit an empty user', function(done) {
+    //Empty object
+    var testUser = {}
+
+    //Connecting to server and issuing test
+    chai.request(server)
+    .put('/user/edit-user')
+    .send(testUser)
+    .end((err, res) => {
+      expect(res.body['status']).to.equal('400');
+      done();
+    });
+  });
 });
