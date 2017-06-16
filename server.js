@@ -3,11 +3,20 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 // Used to store the API routes created
 const api = require('./server/routes/api');
 
 const app = express();
+
+mongoose.connect('mongodb://localhost/startae-twitter', function(err){
+  if(!err) {
+    //Runs the app normally
+  } else {
+    console.log('There was an error while connecting to the database.')
+  }
+});
 
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -33,4 +42,4 @@ app.set('port', port);
 const server = http.createServer(app);
 
 // Sets the api to run on the provived port
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+server.listen(port, () => console.log(`Server running on localhost:${port}`));
