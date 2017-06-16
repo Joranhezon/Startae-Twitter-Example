@@ -1,0 +1,10 @@
+<form [formGroup]="registerUserForm" (ngSubmit)="submitForm(registerUserForm.value)">
+  <!-- Input used to register a name for a new user -->
+  <input type="text" placeholder="Name" [formControl]="registerUserForm.controls['name']">
+
+  <!-- Input used to register a twitter username for a new user -->
+  <input type="text" placeholder="Twitter Username" [formControl]="registerUserForm.controls['twitter_username']">
+
+  <!-- Button used to submit the form value to backend application -->
+  <button>Register</button>
+</form>
