@@ -36,7 +36,7 @@ router.put('/edit-user', function(req, res){
   //Method used to update an existing user
   const condition = { twitter_username: req.body.old_twitter_username};
   User.findOne(condition, (err, foundUser) => {
-    if (!err && foundUser.twitter_username != null) {
+    if (!err && foundUser != null) {
       User.update(condition, { twitter_username: req.body.twitter_username, name: req.body.name}, (err) => {
         if (!err) {
           //Returns default sucessfull status

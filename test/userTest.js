@@ -73,5 +73,41 @@ describe('User Tests', function() {
       expect(res.body['status']).to.equal('400');
       done();
     });
+  });
+
+  it('should edit an existing user', function(done) {
+    //Object used by the PUT method
+    var testUser = {
+      name: 'Matheus',
+      old_twitter_username: 'Moxiar',
+      twitter_username: 'Juju-chan'
+    }
+
+    //Connecting to server and issuing test
+    chai.request(server)
+    .put('/user/edit-user')
+    .send(testUser)
+    .end((err, res) => {
+      expect(res.body['status']).to.equal('200');
+      done();
+    });
+  });
+
+  it('should not edit an non-existing user', function(done) {
+    //Empty object
+    var testUser = {
+      name: 'Matheus',
+      old_twitter_username: 'Xablau',
+      twitter_username: 'Juju-chan'
+    }
+
+    //Connecting to server and issuing test
+    chai.request(server)
+    .put('/user/edit-user')
+    .send(testUser)
+    .end((err, res) => {
+      expect(res.body['status']).to.equal('400');
+      done();
+    });
   })
 });
