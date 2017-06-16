@@ -22,7 +22,39 @@ router.post('/register-user', function(req, res) {
     } else {
       //Sets error messages and status to notify the status of the requests
       serverResponse.setStatus('400');
-      serverResponse.setStatus(err.toString());
+      serverResponse.setDescription(err.toString());
+      return serverResponse;
+    }
+  });
+});
+
+//PUT remote method used to edit an existing user
+router.put('/edit-user', function(req, res){
+  //Creates a server response object to notify the status of the request
+  var serverResponse = new ServerResponse();
+
+  //Method used to update an existing user
+  const condition = { twitter_username: req.body.old_twitter_username};
+  User.findOne(condition, function(err, foundUser){
+    if (!err && foundUser != null) {
+      User.update(condition, { twitter_username: req.body.twitter_username, name: req.body.name}, function(err){
+        if (!err) {
+          //Returns default sucessfull status
+          return serverResponse;
+        } else {
+          //Creates a new error
+          //Sets error messages and status to notify the status of the requests
+          serverResponse.setStatus('400');
+          serverResponse.setDescription(err.toString());
+          return serverResponse;
+        }
+      });
+    } else {
+      //Creates new error for the server response
+      const error = 'Could not find any user with this username.'
+      //Sets error messages and status to notify the status of the requests
+      serverResponse.setStatus('400');
+      serverResponse.setDescription(error);
       return serverResponse;
     }
   });
@@ -33,7 +65,7 @@ router.delete('/delete-user', function(req, res){
   //Creates a server response object to notify the status of the request
   var serverResponse = new ServerResponse();
 
-  //Deletes user based on his twitter_username
+  //Deletes user based on his twitter username
   User.remove({ twitter_username: req.body.twitter_username }, function(err) {
     if (!err) {
       //Returns default sucessfull status
@@ -41,7 +73,7 @@ router.delete('/delete-user', function(req, res){
     } else {
       //Sets error messages and status to notify the status of the requests
       serverResponse.setStatus('400');
-      serverResponse.setStatus(err.toString());
+      serverResponse.setDescription(err.toString());
       return serverResponse;
     }
   });
