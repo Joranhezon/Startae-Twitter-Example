@@ -124,4 +124,52 @@ describe('User Tests', function() {
       done();
     });
   });
+
+  it('should delete an existing user', function(done) {
+    //Object used by the delete method
+    var testUser = {
+      name: 'Matheus',
+      twitter_username: 'Juju-chan'
+    }
+
+    //Connecting to server and issuing test
+    chai.request(server)
+    .delete('/user/delete-user')
+    .send(testUser)
+    .end((err, res) => {
+      expect(res.body['status']).to.equal('200');
+      done();
+    });
+  });
+
+  it('should not delete a non-existing user', function(done) {
+    //Object used by the delete method
+    var testUser = {
+      name: 'Matheus',
+      twitter_username: 'Moxiar'
+    }
+
+    //Connecting to server and issuing test
+    chai.request(server)
+    .delete('/user/delete-user')
+    .send(testUser)
+    .end((err, res) => {
+      expect(res.body['status']).to.equal('400');
+      done();
+    });
+  });
+
+  it('should not delete an empty user', function(done) {
+    //Object used by the delete method
+    var testUser = {}
+
+    //Connecting to server and issuing test
+    chai.request(server)
+    .delete('/user/delete-user')
+    .send(testUser)
+    .end((err, res) => {
+      expect(res.body['status']).to.equal('400');
+      done();
+    });
+  });
 });

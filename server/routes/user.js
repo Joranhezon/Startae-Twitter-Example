@@ -65,7 +65,7 @@ router.delete('/delete-user', function(req, res){
   //Creates a server response object to notify the status of the request
   var serverResponse = new ServerResponse();
 
-  const condition = { twitter_username: req.body.twitter_username};
+  const condition = {twitter_username: req.body.twitter_username};
   User.findOne(condition, (err, foundUser) => {
     if (!err && foundUser != null) {
       //Deletes user based on his twitter username
