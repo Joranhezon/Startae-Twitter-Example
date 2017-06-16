@@ -1,0 +1,36 @@
+// Used to set up dependencies
+const express = require('express');
+const path = require('path');
+const http = require('http');
+const bodyParser = require('body-parser');
+
+// Used to store the API routes created
+const api = require('./server/routes/api');
+
+const app = express();
+
+// Parsers for POST data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// References dist folder created by angular build
+app.use(express.static(path.join(__dirname, 'dist')));
+
+
+//Sets up the api
+app.use('/api', api);
+
+// Catch all other routes provided by angular and return the index file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+
+// Get port from environment and store in Express.
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+//Creates server
+const server = http.createServer(app);
+
+// Sets the api to run on the provived port
+server.listen(port, () => console.log(`API running on localhost:${port}`));
