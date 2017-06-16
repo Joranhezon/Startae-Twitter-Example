@@ -6,13 +6,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 // Used to store the API routes created
-const api = require('./server/routes/api');
+const userRemoteMethods = require('./server/routes/user');
 
 const app = express();
 
 mongoose.connect('mongodb://localhost/startae-twitter', function(err){
   if(!err) {
-    //Runs the app normally
+    // Runs the app normally
   } else {
     console.log('There was an error while connecting to the database.')
   }
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 
 //Sets up the api
-app.use('/api', api);
+app.use('/user', userRemoteMethods);
 
 // Catch all other routes provided by angular and return the index file
 app.get('*', (req, res) => {
