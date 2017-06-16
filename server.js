@@ -43,3 +43,5 @@ const server = http.createServer(app);
 
 // Sets the api to run on the provived port
 server.listen(port, () => console.log(`Server running on localhost:${port}`));
+
+module.exports = server;
