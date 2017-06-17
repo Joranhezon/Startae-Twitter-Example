@@ -7,6 +7,7 @@ import { routes } from './app.router';
 import { AppComponent } from './app.component';
 import { HomePageComponent} from '../pages/home/home-page.component';
 import { RegisterUserComponent } from '../pages/user/registerUser/register-user.component';
+import { RegisterUserService } from '../pages/user/registerUser/register-user.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { RegisterUserComponent } from '../pages/user/registerUser/register-user.
     HttpModule,
     routes
   ],
-  providers: [],
+  providers: [RegisterUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
