@@ -2,7 +2,12 @@
   <div class="col-lg-4" id="user-list">
     <div class="bs-component">
       <ul class="list-group">
-        <li *ngFor="let user of users" class="list-group-item"><h4>{{ user.twitter_username }}</h4></li>
+        <li *ngFor="let user of users" class="list-group-item" id="user-item">
+          <h4 id="user-name">{{ user.twitter_username }}</h4>
+          <!-- Icons provided by font awesome -->
+          <i class="fa fa-edit" id="edit-user"></i>
+          <i class="fa fa-trash-o" id="delete-user"></i>
+        </li>
       </ul>
     </div>
   </div>
