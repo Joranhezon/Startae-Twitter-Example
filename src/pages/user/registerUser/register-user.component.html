@@ -1,15 +1,37 @@
-<form [formGroup]="registerUserForm" (ngSubmit)="submitForm(registerUserForm.value)">
-  <!-- Input used to register a name for a new user -->
-  <input type="text" placeholder="Name" [formControl]="registerUserForm.controls['name']">
+<div class="row" id="row-positioning">
+  <div class="col-lg-4" id="user-list">
+    <div class="bs-component">
+      <ul class="list-group">
+        <li *ngFor="let user of users" class="list-group-item"><h4>{{ user.twitter_username }}</h4></li>
+      </ul>
+    </div>
+  </div>
 
-  <!-- Input used to register a twitter username for a new user -->
-  <input type="text" placeholder="Twitter Username" [formControl]="registerUserForm.controls['twitter_username']">
+  <div class="col-lg-6">
+    <div class="well bs-component" id="register-form">
+      <form [formGroup]="registerUserForm" (ngSubmit)="submitForm(registerUserForm.value)">
+        <legend>User Registration</legend>
 
-  <!-- Button used to submit the form value to backend application -->
-  <button>Register</button>
-</form>
+        <!-- Input used to register a name for a new user -->
+        <div class="form-group">
+          <label for="inputName" class="col-lg-2 control-label">Name</label>
+          <div class="col-lg-10">
+            <input class="form-group" id="inputName" type="text" placeholder="Name" [formControl]="registerUserForm.controls['name']">
+          </div>
+        </div>
 
-<div>
-  <div *ngFor="let user of users">
-    <h4>{{ user.twitter_username }}</h4>
+        <!-- Input used to register a twitter username for a new user -->
+        <div class="form-group">
+          <label for="inputUsername" id="labelUsername" class="col-lg-2 control-label">Username</label>
+          <div class="col-lg-10">
+            <input type="text" id="inputUsername" class="form-group" placeholder="Twitter Username" [formControl]="registerUserForm.controls['twitter_username']">
+          </div>
+        </div>
+
+        <!-- Button used to submit the form value to backend application -->
+        <button class="btn btn-primary" id="submitRegistration" [disabled]="!registerUserForm.value">Register</button>
+      </form>
+    </div>
+  </div>
+
 </div>

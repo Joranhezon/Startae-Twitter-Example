@@ -4,6 +4,7 @@ import { RegisterUserService } from './register-user.service';
 import { ListUserService } from '../listUser/list-user.service';
 
 @Component({
+  styleUrls:['./register-user.component.scss'],
   templateUrl:'register-user.component.html'
 })
 
