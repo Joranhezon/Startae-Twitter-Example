@@ -8,3 +8,8 @@
   <!-- Button used to submit the form value to backend application -->
   <button>Register</button>
 </form>
+
+<div>
+  <div *ngFor="let user of users">
+    <h4>{{ user.twitter_username }}</h4>
+</div>

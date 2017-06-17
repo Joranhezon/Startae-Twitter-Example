@@ -10,6 +10,6 @@ export class RegisterUserService {
   //Calls the route created by express to register an user
   registerUser(userValue: FormGroup) {
     return this.http.post('/user/register-user', userValue.value)
-    .map(res => res.json())
+      .map(res => res.json())
   }
 }
