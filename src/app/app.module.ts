@@ -5,14 +5,12 @@ import { HttpModule } from '@angular/http';
 import { routes } from './app.router';
 
 import { AppComponent } from './app.component';
-import { HomePageComponent} from '../pages/home/home-page.component';
 import { RegisterUserComponent } from '../pages/user/registerUser/register-user.component';
 import { RegisterUserService } from '../pages/user/registerUser/register-user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent,
     RegisterUserComponent
   ],
   imports: [
