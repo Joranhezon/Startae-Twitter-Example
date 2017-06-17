@@ -125,6 +125,16 @@ describe('User Tests', function() {
     });
   });
 
+  it('should return a list of users', function(done) {
+    //Connecting to server and issuing testUser
+    chai.request(server)
+    .get('/user/list-users')
+    .end((err, res) => {
+      expect(res.body).to.be.an('array');
+      done();
+    });
+  });
+
   it('should delete an existing user', function(done) {
     //Object used by the delete method
     var testUser = {
@@ -173,13 +183,12 @@ describe('User Tests', function() {
     });
   });
 
-  it('should return a list of users', function(done) {
+  it('should not return a list of users', function(done) {
     //Connecting to server and issuing testUser
     chai.request(server)
     .get('/user/list-users')
     .end((err, res) => {
-      console.log(res);
-      expect(res.body).to.be.an('array');
+      expect(res.body['status']).to.equal('400');
       done();
     });
   });
