@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterUserService } from './register-user.service';
 import { ListUserService } from '../listUser/list-user.service';
+import { DeleteUserService } from './delete-user.service';
 
 @Component({
   styleUrls:['./register-user.component.scss'],
@@ -14,7 +15,7 @@ export class RegisterUserComponent implements OnInit {
 
   //Responsive form used to register a new user
   constructor(private formBuilder: FormBuilder, private registerUserService: RegisterUserService,
-    private listUserService: ListUserService) {
+    private listUserService: ListUserService, private deleteUserService: DeleteUserService) {
     this.registerUserForm = formBuilder.group({
       'name': [null, Validators.required],
       'twitter_username': [null, Validators.required]
@@ -29,6 +30,17 @@ export class RegisterUserComponent implements OnInit {
     })
   }
 
+  deleteUser(twitterUserName: string) {
+    this.deleteUserService.deleteUser(twitterUserName)
+      .subscribe( res => {
+        if (res.status == 200) {
+          window.location.reload();
+        } else {
+          //Do nothing
+        }
+      })
+  }
+
   //Triggered when the user hits the register button
   submitForm(value: any):void {
     this.registerUserService.registerUser(this.registerUserForm)
@@ -36,7 +48,7 @@ export class RegisterUserComponent implements OnInit {
         if (res.status == 200) {
           window.location.reload();
         } else {
-          console.log('Deu ruim');
+          //Do nothing
         }
       });
   }

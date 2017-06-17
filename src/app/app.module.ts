@@ -9,7 +9,7 @@ import { RegisterUserComponent } from '../pages/user/registerUser/register-user.
 
 import { RegisterUserService } from '../pages/user/registerUser/register-user.service';
 import { ListUserService } from '../pages/user/listUser/list-user.service';
-
+import { DeleteUserService } from '../pages/user/registerUser/delete-user.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { ListUserService } from '../pages/user/listUser/list-user.service';
   ],
   providers: [
     RegisterUserService,
-    ListUserService
+    ListUserService,
+    DeleteUserService
   ],
   bootstrap: [AppComponent]
 })

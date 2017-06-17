@@ -5,8 +5,8 @@
         <li *ngFor="let user of users" class="list-group-item" id="user-item">
           <h4 id="user-name">{{ user.twitter_username }}</h4>
           <!-- Icons provided by font awesome -->
-          <i class="fa fa-edit" id="edit-user"></i>
-          <i class="fa fa-trash-o" id="delete-user"></i>
+          <button class="fa fa-edit" id="edit-user"></button>
+          <button class="fa fa-trash-o" id="delete-user" (click)="deleteUser(user)"></button>
         </li>
       </ul>
     </div>
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Button used to submit the form value to backend application -->
-        <button class="btn btn-primary" id="submitRegistration" [disabled]="!registerUserForm.value">Register</button>
+        <button class="btn btn-primary" id="submitRegistration" [disabled]="!registerUserForm.valid">Register</button>
       </form>
     </div>
   </div>
