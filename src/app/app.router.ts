@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 import { RegisterUserComponent } from '../pages/user/registerUser/register-user.component';
 
 export const router: Routes = [
-  { path: '', redirectTo:'register-user', pathMatch: 'full' },
-  { path: 'register-user', component: RegisterUserComponent }
+  { path: '', redirectTo:'home', pathMatch: 'full' },
+  { path: 'home', component: RegisterUserComponent }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

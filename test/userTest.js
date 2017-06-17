@@ -172,4 +172,15 @@ describe('User Tests', function() {
       done();
     });
   });
+
+  it('should return a list of users', function(done) {
+    //Connecting to server and issuing testUser
+    chai.request(server)
+    .get('/user/list-users')
+    .end((err, res) => {
+      console.log(res);
+      expect(res.body).to.be.an('array');
+      done();
+    });
+  });
 });
