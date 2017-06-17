@@ -91,4 +91,23 @@ router.delete('/delete-user', function(req, res){
   });
 });
 
+//GET remote method used to return all the user on the system
+router.get('/list-users', function(req, res){
+  //Creates a server response object to notify the status of the request
+  var serverResponse = new ServerResponse();
+
+  User.find( {}, (err, foundUsers) => {
+    if(!err && foundUsers[0] != null) {
+      res.json(foundUsers);
+    } else {
+      //Creates new error for the server response
+      const error = 'Could not find any users on the database.'
+      //Sets error messages and status to notify the status of the requests
+      serverResponse.setStatus('400');
+      serverResponse.setDescription(error);
+      res.json(serverResponse);
+    }
+  });
+});
+
 module.exports = router;
