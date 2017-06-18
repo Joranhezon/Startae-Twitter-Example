@@ -1,0 +1,26 @@
+<div class="col-lg-6">
+  <div class="well bs-component" id="register-form">
+    <form [formGroup]="editUserForm" (ngSubmit)="submitForm(editUserForm.value)">
+      <legend>Edit</legend>
+
+      <!-- Input used to register a name for a new user -->
+      <div class="form-group">
+        <label for="inputName" class="col-lg-2 control-label">New Name</label>
+        <div class="col-lg-10">
+          <input class="form-group" id="inputName" type="text" placeholder="Name" [formControl]="editUserForm.controls['name']">
+        </div>
+      </div>
+
+      <!-- Input used to register a twitter username for a new user -->
+      <div class="form-group">
+        <label for="inputUsername" id="labelUsername" class="col-lg-2 control-label">Username</label>
+        <div class="col-lg-10">
+          <input type="text" id="inputUsername" class="form-group" placeholder="New Username" [formControl]="editUserForm.controls['twitter_username']">
+        </div>
+      </div>
+
+      <!-- Button used to submit the form value to backend application -->
+      <button class="btn btn-primary" id="submitRegistration" [disabled]="!editUserForm.valid">Register</button>
+    </form>
+  </div>
+</div>

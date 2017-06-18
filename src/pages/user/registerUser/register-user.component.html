@@ -5,7 +5,7 @@
         <li *ngFor="let user of users" class="list-group-item" id="user-item">
           <h4 id="user-name">{{ user.twitter_username }}</h4>
           <!-- Icons provided by font awesome -->
-          <button class="fa fa-edit" id="edit-user"></button>
+          <button class="fa fa-edit" id="edit-user" (click)="editUser(user)"></button>
           <button class="fa fa-trash-o" id="delete-user" (click)="deleteUser(user)"></button>
         </li>
       </ul>
