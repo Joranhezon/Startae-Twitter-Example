@@ -12,12 +12,16 @@ import { RegisterUserService } from '../pages/user/registerUser/register-user.se
 import { ListUserService } from '../pages/user/listUser/list-user.service';
 import { DeleteUserService } from '../pages/user/registerUser/delete-user.service';
 import { EditUserService } from '../pages/user/editUser/edit-user.service';
+import { ListTweetsComponent } from '../pages/listTweets/list-tweets.component';
+import { ListTweetsService } from '../pages/listTweets/list-tweets.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    ListTweetsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import { EditUserService } from '../pages/user/editUser/edit-user.service';
     RegisterUserService,
     ListUserService,
     EditUserService,
-    DeleteUserService
+    DeleteUserService,
+    ListTweetsService
   ],
   bootstrap: [AppComponent]
 })

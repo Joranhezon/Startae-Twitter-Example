@@ -39,6 +39,12 @@ export class RegisterUserComponent implements OnInit {
     this.router.navigateByUrl('edit-user');
   }
 
+  //Triggered when user hits the username button
+  listUser(user: any) {
+    this.editUserService.setUser(user);
+    this.router.navigateByUrl('list-tweets');
+  }
+
   //Triggered when the user hits the delete button
   deleteUser(twitterUserName: string) {
     this.deleteUserService.deleteUser(twitterUserName)

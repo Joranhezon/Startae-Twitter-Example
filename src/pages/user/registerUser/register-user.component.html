@@ -3,7 +3,7 @@
     <div class="bs-component">
       <ul class="list-group">
         <li *ngFor="let user of users" class="list-group-item" id="user-item">
-          <h4 id="user-name">{{ user.twitter_username }}</h4>
+          <h4 id="user-name" (click)="listUser(user)">{{ user.twitter_username }}</h4>
           <!-- Icons provided by font awesome -->
           <button class="fa fa-edit" id="edit-user" (click)="editUser(user)"></button>
           <button class="fa fa-trash-o" id="delete-user" (click)="deleteUser(user)"></button>
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Button used to submit the form value to backend application -->
-        <button class="btn btn-primary" id="submitRegistration" [disabled]="!registerUserForm.valid">Register</button>
+        <button class="btn btn-primary" id="submitRegistration">Register</button>
       </form>
     </div>
   </div>

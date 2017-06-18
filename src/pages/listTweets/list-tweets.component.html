@@ -1,0 +1,12 @@
+<div class="col-lg-4" id="tweet-list">
+  <div class="bs-component">
+    <ul class="list-group" id="tweet-item">
+      <li *ngFor="let tweet of tweets" class="list-group-item" id="item-content">
+        <img src="{{tweet.user.profile_image_url}}">
+        <h4 class="name-position">{{ tweet.user.name }}</h4>
+        <h4 class="username-position">@{{ currentUser.twitter_username }}</h4>
+        <h5 class="content-position">{{ tweet.text }}</h5>
+      </li>
+    </ul>
+  </div>
+</div>

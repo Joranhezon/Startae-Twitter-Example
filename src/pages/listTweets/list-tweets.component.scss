@@ -1,0 +1,33 @@
+.username-position {
+  position: relative;
+  left: 212px;
+  top: -68px;
+  font-size: 14px;
+  color: black;
+}
+
+.content-position {
+  position: relative;
+  bottom: 49px;
+  color: black;
+}
+
+.name-position {
+  position: relative;
+  left: 60px;
+  bottom: 40px;
+  color: black;
+}
+
+#tweet-list {
+  position: relative;
+  left: 440px;
+}
+
+#tweet-item {
+  padding-bottom: initial;
+}
+
+#item-content {
+  height: 117px;
+}
