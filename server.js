@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 
 // Used to store the API routes created
 const userRemoteMethods = require('./server/routes/user');
+const userTweets = require('./server/routes/twitter');
 
 const app = express();
 
@@ -25,9 +26,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // References dist folder created by angular build
 app.use(express.static(path.join(__dirname, 'dist')));
 
-
 //Sets up the api
 app.use('/user', userRemoteMethods);
+app.use('/twitter', userTweets);
 
 // Catch all other routes provided by angular and return the index file
 app.get('*', (req, res) => {
